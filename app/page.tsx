@@ -57,13 +57,9 @@ export default function Home() {
 
                 <legend className="pb-2 uppercase font-bold">Disponibilités pour une visite</legend>
 
-                <div className="flex gap-2 ">
+                <div >
 
-                  <button
-                    type="button"
-                    onClick={() => setIsModalOpen(true)}
-                    className="bg-white text-black rounded-3xl px-4 py-2 w-fit cursor-pointer hover:bg-gray-100 transition-colors"
-                  >
+                  <button type="button" onClick={() => setIsModalOpen(true)} className="bg-purple-900 text-white rounded-3xl px-4 py-2 w-fit cursor-pointer hover:bg-purple-600 transition-colors">
                     Ajouter une disponibilité
                   </button>
                 </div>
@@ -71,52 +67,53 @@ export default function Home() {
               </fieldset>
             </div>
 
+            <div className="flex flex-col gap-8">
+              <fieldset>
 
-            <fieldset>
+                <legend className="pb-2 uppercase font-bold">Votre message</legend>
 
-              <legend className="pb-2 uppercase font-bold">Votre message</legend>
+                <div className="flex flex-col gap-4">
 
-              <div className="flex flex-col gap-2">
+                  <div className="flex gap-4 pl-2">
 
-                <div className="flex gap-2 pl-2">
+                    <div className="flex items-center gap-2">
+                      <input type="radio" id="visit" name="reason" value="visite" />
+                      <label htmlFor="visit">Demande de visite</label>
+                    </div>
 
-                  <div className="flex items-center gap-2">
-                    <input type="radio" id="visit" name="reason" value="visite" />
-                    <label htmlFor="visit">Demande de visite</label>
+                    <div className="flex items-center gap-2">
+                      <input type="radio" id="photos" name="reason" value="photos" />
+                      <label htmlFor="photos">Demande de plus de photos</label>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <input type="radio" id="other" name="reason" value="autre" />
+                      <label htmlFor="other">Autre</label>
+                    </div>
+
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <input type="radio" id="photos" name="reason" value="photos" />
-                    <label htmlFor="photos">Demande de plus de photos</label>
+                  <div className="flex gap-2 pl-2 items-center">
+                    <input type="checkbox" id="contact_tel" name="contact" value="true" />
+                    <label htmlFor="contact_tel">Être recontacté par téléphone</label>
+
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <input type="radio" id="other" name="reason" value="autre" />
-                    <label htmlFor="other">Autre</label>
-                  </div>
+                  <textarea name="message" placeholder="Message" maxLength={500} className="bg-white text-black rounded-3xl pl-4 p-2 mt-2" />
 
                 </div>
 
-                <div className="flex gap-2 pl-2 items-center">
-                  <input type="checkbox" id="contact_tel" name="contact" value="true" />
-                  <label htmlFor="contact_tel">Être recontacté par téléphone</label>
+              </fieldset>
 
-                </div>
-
-                <textarea name="message" placeholder="Message" className="bg-white text-black rounded-3xl pl-4 p-2" />
-
-
-
-              </div>
-
-            </fieldset>
+              <button type="submit" className="bg-yellow-600 text-white rounded-3xl px-12 py-2 cursor-pointer hover:bg-yellow-500 ml-auto mt-auto transition-colors">Envoyer</button>
+            </div>
 
           </div>
         </form>
 
 
 
-        <Image src="/images/form_background.jpg" fill alt="Une pièce d'appartement" className="object-cover blur-[2px] brightness-50"></Image>
+        <Image src="/images/form_background.jpg" fill alt="Une pièce d'appartement" className="object-cover blur-[4px] brightness-50"></Image>
       </div>
 
       <AvaibilityModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
