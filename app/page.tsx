@@ -1,6 +1,11 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+import AvaibilityModal from "../components/AvaibilityModal";
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <main className="flex flex-1 w-full flex-col items-center py-32 bg-white ">
       <div className="relative flex min-w-[80%] max-w-[100%] min-h-100 items-start justify-start overflow-hidden rounded-3xl p-16">
@@ -52,7 +57,13 @@ export default function Home() {
 
               <div className="flex gap-2 ">
 
-                <button className="bg-white text-black rounded-3xl px-4 py-2 w-fit">Ajouter un créneau</button>
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(true)}
+                  className="bg-white text-black rounded-3xl px-4 py-2 w-fit cursor-pointer hover:bg-gray-100 transition-colors"
+                >
+                  Ajouter une disponibilité
+                </button>
               </div>
 
             </fieldset>
@@ -102,6 +113,7 @@ export default function Home() {
         <Image src="/images/form_background.jpg" fill alt="Une pièce d'appartement" className="object-cover blur-[2px] brightness-50"></Image>
       </div>
 
+      <AvaibilityModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </main>
   );
 }
