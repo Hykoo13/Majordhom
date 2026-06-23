@@ -72,18 +72,22 @@ export default function Home() {
                     Ajouter une disponibilité
                   </button>
 
-                  {availabilities.map((slot, index) => (
-                    <div key={index} className="mt-4 p-4 bg-white rounded-2xl flex items-center justify-between text-black text-sm w-fit gap-4">
-                      <span>{getReadableAvailability(slot)}</span>
-                      <button
-                        type="button"
-                        onClick={() => setAvailabilities(availabilities.filter((_, i) => i !== index))}
-                        className="text-red-500 font-bold hover:text-red-700 cursor-pointer"
-                      >
-                        ✕
-                      </button>
+                  {availabilities.length > 0 && (
+                    <div className="max-h-[125px] overflow-y-auto custom-scrollbar flex flex-col gap-2 mt-4 pr-2 w-fit">
+                      {availabilities.map((slot, index) => (
+                        <div key={index} className="p-3 bg-white rounded-2xl flex items-center justify-between text-black text-sm gap-4 border border-zinc-100 shadow-sm">
+                          <span>{getReadableAvailability(slot)}</span>
+                          <button
+                            type="button"
+                            onClick={() => setAvailabilities(availabilities.filter((_, i) => i !== index))}
+                            className="text-red-500 font-bold hover:text-red-700 cursor-pointer"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  )}
 
                   <input type="hidden" name="availabilities" value={JSON.stringify(availabilities)} />
                 </div>
@@ -123,7 +127,7 @@ export default function Home() {
 
                   </div>
 
-                  <textarea name="message" placeholder="Message" maxLength={500} className="bg-white text-black rounded-3xl pl-4 p-2 mt-2" />
+                  <textarea name="message" placeholder="Message" maxLength={500} className="bg-white text-black rounded-2xl pl-4 p-4 mt-2 h-32 custom-scrollbar resize-none" />
 
                 </div>
 
