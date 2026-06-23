@@ -5,12 +5,13 @@ import { useState } from "react";
 interface AvaibilityModalProps {
     isOpen: boolean;
     onClose: () => void;
+    onSave: (slot: { day: string; time: string }) => boolean;
 }
 
 const MONTHS = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 const WEEKDAYS = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
 
-export default function AvaibilityModal({ isOpen, onClose }: AvaibilityModalProps) {
+export default function AvaibilityModal({ isOpen, onClose, onSave }: AvaibilityModalProps) {
     const [step, setStep] = useState(1);
     const [selectedDay, setSelectedDay] = useState<string | null>(null);
     const [viewDate, setViewDate] = useState(new Date());
@@ -28,11 +29,14 @@ export default function AvaibilityModal({ isOpen, onClose }: AvaibilityModalProp
     today.setHours(0, 0, 0, 0);
 
     const handleSave = () => {
-        console.log("Slot saved:", { day: selectedDay, time: `${selectedHour}:${selectedMin}` });
-        alert("Disponibilité enregistrée !");
-        onClose();
-        setStep(1);
-        setSelectedDay(null);
+        if (selectedDay) {
+            const success = onSave({ day: selectedDay, time: `${selectedHour}:${selectedMin}` });
+            if (success) {
+                onClose();
+                setStep(1);
+                setSelectedDay(null);
+            }
+        }
     };
 
     return (
@@ -73,7 +77,7 @@ export default function AvaibilityModal({ isOpen, onClose }: AvaibilityModalProp
                                             disabled={isPast}
                                             onClick={() => setSelectedDay(dateStr)}
                                             className={`h-7 w-7 text-xs rounded-full flex items-center justify-center transition-all ${isPast ? "text-gray-300 cursor-not-allowed" :
-                                                    selectedDay === dateStr ? "bg-blue-600 text-white font-bold" : "hover:bg-gray-100 text-gray-800"
+                                                    selectedDay === dateStr ? "bg-purple-900 text-white font-bold" : "hover:bg-gray-100 text-gray-800"
                                                 }`}
                                         >
                                             {dayNum}
@@ -85,7 +89,7 @@ export default function AvaibilityModal({ isOpen, onClose }: AvaibilityModalProp
 
                         <div className="flex justify-end gap-2 pt-2 border-t">
                             <button type="button" onClick={onClose} className="px-3 py-1 border rounded hover:bg-gray-100 text-xs">Annuler</button>
-                            <button type="button" onClick={() => selectedDay ? setStep(2) : alert("Sélectionnez un jour.")} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-xs">Suivant</button>
+                            <button type="button" onClick={() => selectedDay ? setStep(2) : alert("Sélectionnez un jour.")} className="px-3 py-1 bg-purple-900 text-white rounded hover:bg-purple-600 transition-colors text-xs">Suivant</button>
                         </div>
                     </div>
                 )}
@@ -123,7 +127,7 @@ export default function AvaibilityModal({ isOpen, onClose }: AvaibilityModalProp
                             <button type="button" onClick={() => setStep(1)} className="px-3 py-1 border rounded hover:bg-gray-100 text-xs">Retour</button>
                             <div className="flex gap-2">
                                 <button type="button" onClick={onClose} className="px-3 py-1 border rounded hover:bg-gray-100 text-xs">Annuler</button>
-                                <button type="button" onClick={handleSave} className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-xs">Valider</button>
+                                <button type="button" onClick={handleSave} className="px-3 py-1 bg-purple-900 text-white rounded hover:bg-purple-600 transition-colors text-xs">Valider</button>
                             </div>
                         </div>
                     </div>

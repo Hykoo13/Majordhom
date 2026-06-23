@@ -6,6 +6,16 @@ import AvaibilityModal from "../components/AvaibilityModal";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [availabilities, setAvailabilities] = useState<{ day: string; time: string }[]>([]);
+
+  const getReadableAvailability = (slot: { day: string; time: string }) => {
+    const [y, m, d] = slot.day.split("-").map(Number);
+    const dateObj = new Date(y, m - 1, d);
+    const weekdays = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+    const dayName = weekdays[dateObj.getDay()];
+    const formattedDate = `${String(d).padStart(2, "0")}/${String(m).padStart(2, "0")}/${y}`;
+    return `${dayName} ${formattedDate} à ${slot.time}`;
+  };
   return (
     <main className="flex flex-1 w-full flex-col items-center py-32 bg-white ">
       <div className="relative flex min-w-[80%] max-w-[100%] min-h-100 items-start justify-start overflow-hidden rounded-3xl p-16">
@@ -46,8 +56,8 @@ export default function Home() {
                     <input type="text" name="prenom" placeholder="Prénom" className="bg-white text-black rounded-3xl pl-4 py-2" />
                   </div>
 
-                  <input type="email" name="nom" placeholder="Adresse mail" className="bg-white text-black rounded-3xl pl-4 py-2" />
-                  <input type="tel" name="prenom" placeholder="Téléphone" className="bg-white text-black rounded-3xl pl-4 py-2" />
+                  <input type="email" name="email" placeholder="Adresse mail" className="bg-white text-black rounded-3xl pl-4 py-2" />
+                  <input type="tel" name="telephone" placeholder="Téléphone" className="bg-white text-black rounded-3xl pl-4 py-2" />
 
                 </div>
 
@@ -57,11 +67,25 @@ export default function Home() {
 
                 <legend className="pb-2 uppercase font-bold">Disponibilités pour une visite</legend>
 
-                <div >
-
+                <div>
                   <button type="button" onClick={() => setIsModalOpen(true)} className="bg-purple-900 text-white rounded-3xl px-4 py-2 w-fit cursor-pointer hover:bg-purple-600 transition-colors">
                     Ajouter une disponibilité
                   </button>
+
+                  {availabilities.map((slot, index) => (
+                    <div key={index} className="mt-4 p-4 bg-white rounded-2xl flex items-center justify-between text-black text-sm w-fit gap-4">
+                      <span>{getReadableAvailability(slot)}</span>
+                      <button
+                        type="button"
+                        onClick={() => setAvailabilities(availabilities.filter((_, i) => i !== index))}
+                        className="text-red-500 font-bold hover:text-red-700 cursor-pointer"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  ))}
+
+                  <input type="hidden" name="availabilities" value={JSON.stringify(availabilities)} />
                 </div>
 
               </fieldset>
@@ -116,7 +140,19 @@ export default function Home() {
         <Image src="/images/form_background.jpg" fill alt="Une pièce d'appartement" className="object-cover blur-[4px] brightness-50"></Image>
       </div>
 
-      <AvaibilityModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <AvaibilityModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        onSave={(slot) => {
+          const exists = availabilities.some((a) => a.day === slot.day && a.time === slot.time);
+          if (exists) {
+            alert("Cette disponibilité a déjà été ajoutée.");
+            return false;
+          }
+          setAvailabilities((prev) => [...prev, slot]);
+          return true;
+        }} 
+      />
     </main>
   );
 }
