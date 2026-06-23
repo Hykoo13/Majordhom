@@ -18,21 +18,26 @@ export default function Home() {
   };
   return (
     <main className="flex flex-1 w-full flex-col items-center py-32 bg-white ">
-      <div className="relative flex min-w-[80%] max-w-[100%] min-h-100 items-start justify-start overflow-hidden rounded-3xl p-16">
 
-        <form className="flex flex-col z-1 ">
-          <h2 className="pb-4 text-xl uppercase font-bold">Contacter l'agence</h2>
-          <div className="flex flex-wrap gap-12 pl-8">
+      {/* Form with image bg */}
+      <div className="relative flex w-[95%] sm:w-[90%] min-h-100 items-start overflow-hidden rounded-3xl p-6 sm:p-12 md:p-16">
 
-            <div className="flex flex-col gap-8"> {/* Left Side of form */}
+        <form className="flex flex-col z-1 w-full"> {/* Form  */}
 
-              <fieldset>
+          <h2 className="pb-10 text-3xl uppercase font-bold">Contacter l'agence</h2> {/* Form title */}
 
-                <legend className="pb-2 uppercase font-bold">Vos informations</legend>
+          <div className="flex flex-col lg:flex-row items-start justify-between w-full gap-8"> {/* Form content both sides */}
 
-                <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-8 w-full lg:w-[48%]"> {/* Left Side of form */}
 
-                  <div className="flex gap-2 pl-2"> {/* Title */}
+              <fieldset className="w-full">
+                {/* Informations */}
+
+                <legend className="pb-4 text-xl uppercase font-bold">Vos informations</legend> {/* Title */}
+
+                <div className="flex flex-col gap-3 w-full">
+
+                  <div className="flex gap-4 pl-2"> {/* Title selector */}
 
                     <div className="flex items-center gap-2">
                       <input type="radio" id="m" name="civilite" value="M." />
@@ -51,31 +56,33 @@ export default function Home() {
 
                   </div>
 
-                  <div className="flex gap-2">
-                    <input type="text" name="nom" placeholder="Nom" className="bg-white text-black rounded-3xl pl-4 py-2" />
-                    <input type="text" name="prenom" placeholder="Prénom" className="bg-white text-black rounded-3xl pl-4 py-2" />
+                  <div className="flex flex-col sm:flex-row gap-3 w-full"> {/* FirstName and Lastname */}
+                    <input type="text" name="nom" placeholder="Nom" className="bg-white text-black rounded-3xl pl-4 py-2 flex-1 w-full" />
+                    <input type="text" name="prenom" placeholder="Prénom" className="bg-white text-black rounded-3xl pl-4 py-2 flex-1 w-full" />
                   </div>
 
-                  <input type="email" name="email" placeholder="Adresse mail" className="bg-white text-black rounded-3xl pl-4 py-2" />
-                  <input type="tel" name="telephone" placeholder="Téléphone" className="bg-white text-black rounded-3xl pl-4 py-2" />
+                  {/* Email and Phone */}
+                  <input type="email" name="email" placeholder="Adresse mail" className="bg-white text-black rounded-3xl pl-4 py-2 w-full" />
+                  <input type="tel" name="telephone" placeholder="Téléphone" className="bg-white text-black rounded-3xl pl-4 py-2 w-full" />
 
                 </div>
 
               </fieldset>
 
-              <fieldset>
+              <fieldset className="w-full">
+                {/* Availabilities */}
 
-                <legend className="pb-2 uppercase font-bold">Disponibilités pour une visite</legend>
+                <legend className="pb-4 text-xl uppercase font-bold">Disponibilités pour une visite</legend>
 
-                <div>
-                  <button type="button" onClick={() => setIsModalOpen(true)} className="bg-purple-900 text-white rounded-3xl px-4 py-2 w-fit cursor-pointer hover:bg-purple-600 transition-colors">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 min-h-[50px] w-full"> {/* Button with avaibilities */}
+                  <button type="button" onClick={() => setIsModalOpen(true)} className="bg-purple-900 text-white rounded-3xl px-10 py-3 w-full sm:w-auto cursor-pointer hover:bg-purple-600 transition-colors uppercase font-bold shrink-0">
                     Ajouter une disponibilité
                   </button>
 
                   {availabilities.length > 0 && (
-                    <div className="max-h-[125px] overflow-y-auto custom-scrollbar flex flex-col gap-2 mt-4 pr-2 w-fit">
+                    <div className="max-h-[100px] sm:max-h-[50px] overflow-y-auto custom-scrollbar flex flex-col gap-2 pr-2 w-full sm:min-w-[200px] mt-1">
                       {availabilities.map((slot, index) => (
-                        <div key={index} className="p-3 bg-white rounded-2xl flex items-center justify-between text-black text-sm gap-4 border border-zinc-100 shadow-sm">
+                        <div key={index} className="p-2.5 bg-white rounded-2xl flex items-center justify-between text-black text-sm gap-4 border border-zinc-100 shadow-sm">
                           <span>{getReadableAvailability(slot)}</span>
                           <button
                             type="button"
@@ -95,14 +102,16 @@ export default function Home() {
               </fieldset>
             </div>
 
-            <div className="flex flex-col gap-8">
-              <fieldset>
+            <div className="flex flex-col gap-8 w-full lg:w-[48%]"> {/* Right Side of form */}
 
-                <legend className="pb-2 uppercase font-bold">Votre message</legend>
+              <fieldset className="w-full">
+                {/* Message */}
 
-                <div className="flex flex-col gap-4">
+                <legend className="pb-4 text-xl uppercase font-bold">Votre message</legend>
 
-                  <div className="flex gap-4 pl-2">
+                <div className="flex flex-col gap-3">
+
+                  <div className="flex flex-wrap gap-4 pl-2"> {/* Reason selector  */}
 
                     <div className="flex items-center gap-2">
                       <input type="radio" id="visit" name="reason" value="visite" />
@@ -121,32 +130,37 @@ export default function Home() {
 
                   </div>
 
-                  <div className="flex gap-2 pl-2 items-center">
+                  <div className="flex gap-4 pl-2"> {/* checkbox recall  */}
+
                     <input type="checkbox" id="contact_tel" name="contact" value="true" />
                     <label htmlFor="contact_tel">Être recontacté par téléphone</label>
 
                   </div>
 
-                  <textarea name="message" placeholder="Message" maxLength={500} className="bg-white text-black rounded-2xl pl-4 p-4 mt-2 h-32 custom-scrollbar resize-none" />
+                  {/* text area  */}
+                  <textarea name="message" placeholder="Message" maxLength={500} className="bg-white text-black rounded-2xl px-6 py-4 mt-2 h-32 custom-scrollbar resize-none w-full" />
 
                 </div>
 
               </fieldset>
 
-              <button type="submit" className="bg-yellow-600 text-white rounded-3xl px-12 py-2 cursor-pointer hover:bg-yellow-500 ml-auto mt-auto transition-colors">Envoyer</button>
+              {/* Sumbit button  */}
+              <button type="submit" className="bg-yellow-600 text-white text-xl font-bold rounded-3xl px-16 py-3 cursor-pointer hover:bg-yellow-500 w-full sm:w-auto sm:ml-auto mt-auto transition-colors">Envoyer</button>
             </div>
 
           </div>
+
         </form>
 
+        {/* Background image*/}
+        <Image src="/images/form_background.jpg" fill alt="Une pièce d'appartement" className="object-cover brightness-50"></Image>
 
-
-        <Image src="/images/form_background.jpg" fill alt="Une pièce d'appartement" className="object-cover blur-[4px] brightness-50"></Image>
       </div>
 
-      <AvaibilityModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+
+      <AvaibilityModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
         onSave={(slot) => {
           const exists = availabilities.some((a) => a.day === slot.day && a.time === slot.time);
           if (exists) {
@@ -155,8 +169,10 @@ export default function Home() {
           }
           setAvailabilities((prev) => [...prev, slot]);
           return true;
-        }} 
+        }}
       />
+
+
     </main>
   );
 }
