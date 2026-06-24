@@ -103,13 +103,13 @@ export default function Home() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-4 w-full"> {/* FirstName and Lastname */}
-                    <input type="text" name="nom" placeholder="Nom" className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-5 py-3.5 focus:outline-none transition-all placeholder-purple-200/40 text-sm flex-1 w-full" required />
-                    <input type="text" name="prenom" placeholder="Prénom" className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-5 py-3.5 focus:outline-none transition-all placeholder-purple-200/40 text-sm flex-1 w-full" required />
+                    <input type="text" name="nom" placeholder="Nom" aria-label="Nom" className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-5 py-3.5 focus:outline-none transition-all placeholder-purple-200/40 text-sm flex-1 w-full" required />
+                    <input type="text" name="prenom" placeholder="Prénom" aria-label="Prénom" className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-5 py-3.5 focus:outline-none transition-all placeholder-purple-200/40 text-sm flex-1 w-full" required />
                   </div>
 
                   {/* Email and Phone */}
-                  <input type="email" name="email" placeholder="Adresse mail" className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-5 py-3.5 focus:outline-none transition-all placeholder-purple-200/40 text-sm w-full" required />
-                  <input type="tel" name="telephone" placeholder="Téléphone" className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-5 py-3.5 focus:outline-none transition-all placeholder-purple-200/40 text-sm w-full" />
+                  <input type="email" name="email" placeholder="Adresse mail" aria-label="Adresse e-mail" className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-5 py-3.5 focus:outline-none transition-all placeholder-purple-200/40 text-sm w-full" required />
+                  <input type="tel" name="telephone" placeholder="Téléphone" aria-label="Numéro de téléphone" className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-5 py-3.5 focus:outline-none transition-all placeholder-purple-200/40 text-sm w-full" />
 
                 </div>
 
@@ -133,6 +133,7 @@ export default function Home() {
                           <button
                             type="button"
                             onClick={() => setAvailabilities(availabilities.filter((_, i) => i !== index))}
+                            aria-label={`Supprimer la disponibilité du ${getReadableAvailability(slot)}`}
                             className="text-purple-300 hover:text-red-400 font-bold cursor-pointer transition-colors text-sm"
                           >
                             ✕
@@ -182,7 +183,7 @@ export default function Home() {
                   </div>
 
                   {/* text area  */}
-                  <textarea name="message" placeholder="Message" maxLength={500} className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-5 py-3.5 h-32 custom-scrollbar resize-none w-full focus:outline-none transition-all placeholder-purple-200/40 text-sm" required />
+                  <textarea name="message" placeholder="Message" aria-label="Message" maxLength={500} className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-5 py-3.5 h-32 custom-scrollbar resize-none w-full focus:outline-none transition-all placeholder-purple-200/40 text-sm" required />
 
                 </div>
 
@@ -253,6 +254,7 @@ export default function Home() {
             <button
               type="button"
               onClick={() => setToastState("hiding")}
+              aria-label="Fermer la notification"
               className={`ml-auto pl-2 cursor-pointer transition-colors ${
                 toastType === "success" ? "text-purple-300 hover:text-white" : "text-red-300 hover:text-white"
               }`}

@@ -56,7 +56,7 @@ export default function AvaibilityModal({ isOpen, onClose, availabilities, onSav
                 {/* Header */}
                 <div className="flex justify-between items-center border-b border-white/10 pb-3">
                     <h3 className="font-black text-sm text-[#fbad18] uppercase tracking-wide">Ajouter une disponibilité</h3>
-                    <button type="button" onClick={onClose} className="text-purple-300 hover:text-white font-bold transition-colors cursor-pointer text-sm">✕</button>
+                    <button type="button" onClick={onClose} aria-label="Fermer la modale" className="text-purple-300 hover:text-white font-bold transition-colors cursor-pointer text-sm">✕</button>
                 </div>
 
                 {/* Content wrapper */}
@@ -70,6 +70,7 @@ export default function AvaibilityModal({ isOpen, onClose, availabilities, onSav
                                     type="button"
                                     disabled={year <= today.getFullYear() && month <= today.getMonth()}
                                     onClick={() => setViewDate(new Date(year, month - 1, 1))}
+                                    aria-label="Mois précédent"
                                     className="w-7 h-7 border border-white/10 hover:bg-[#fbad18] hover:text-white hover:border-[#fbad18] rounded-full hover:-translate-y-0.5 active:translate-y-0 text-xs transition-all cursor-pointer text-purple-100 flex items-center justify-center disabled:opacity-30 disabled:cursor-default disabled:transform-none disabled:border-white/5 disabled:hover:bg-transparent"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-3.5 h-3.5">
@@ -77,7 +78,7 @@ export default function AvaibilityModal({ isOpen, onClose, availabilities, onSav
                                     </svg>
                                 </button>
                                 <span className="font-bold text-xs text-white">{MONTHS[month]} {year}</span>
-                                <button type="button" onClick={() => setViewDate(new Date(year, month + 1, 1))} className="w-7 h-7 border border-white/10 hover:bg-[#fbad18] hover:text-white hover:border-[#fbad18] rounded-full hover:-translate-y-0.5 active:translate-y-0 text-xs transition-all cursor-pointer text-purple-100 flex items-center justify-center">
+                                <button type="button" onClick={() => setViewDate(new Date(year, month + 1, 1))} aria-label="Mois suivant" className="w-7 h-7 border border-white/10 hover:bg-[#fbad18] hover:text-white hover:border-[#fbad18] rounded-full hover:-translate-y-0.5 active:translate-y-0 text-xs transition-all cursor-pointer text-purple-100 flex items-center justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-3.5 h-3.5">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                                     </svg>
@@ -105,6 +106,7 @@ export default function AvaibilityModal({ isOpen, onClose, availabilities, onSav
                                             type="button"
                                             disabled={isDisabled}
                                             onClick={() => setSelectedDay(dateStr)}
+                                            aria-label={`${dayNum} ${MONTHS[month]} ${year}`}
                                             className={`h-8 w-8 text-xs rounded-full flex items-center justify-center transition-all ${isDisabled ? "text-purple-950/60 cursor-default opacity-30" :
                                                     selectedDay === dateStr ? "bg-[#fbad18] text-white font-bold" : "hover:bg-purple-900/50 text-purple-100 cursor-pointer"
                                                 }`}
