@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #f0eff1;
   --foreground: #171717;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Gotham", sans-serif;
+  --font-mono: monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,7 +22,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Gotham", sans-serif;
 }
 
 /* Custom scrollbar utility */
@@ -51,6 +51,7 @@ body {
     transform: translateY(100%) scale(0.9);
     opacity: 0;
   }
+
   to {
     transform: translateY(0) scale(1);
     opacity: 1;
@@ -62,6 +63,7 @@ body {
     transform: translateY(0) scale(1);
     opacity: 1;
   }
+
   to {
     transform: translateY(100%) scale(0.9);
     opacity: 0;
