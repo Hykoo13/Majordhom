@@ -79,7 +79,7 @@ export default function Home() {
               <fieldset className="w-full">
                 {/* Informations */}
 
-                <legend className="pb-6 text-2xl font-black text-[#fbad18] uppercase tracking-wider">Vos informations</legend>
+                <legend className="pb-6 text-xl font-black text-[#fbad18] uppercase tracking-wider">Vos informations</legend>
 
                 <div className="flex flex-col gap-5 w-full">
 
@@ -87,29 +87,29 @@ export default function Home() {
 
                     <div className="flex items-center gap-2.5 cursor-pointer group">
                       <input type="radio" id="m" name="civilite" value="M." required className="cursor-pointer" />
-                      <label htmlFor="m" className="text-base font-medium text-purple-100 group-hover:text-white cursor-pointer transition-colors">M.</label>
+                      <label htmlFor="m" className="text-sm font-medium text-purple-100 group-hover:text-white cursor-pointer transition-colors">M.</label>
                     </div>
 
                     <div className="flex items-center gap-2.5 cursor-pointer group">
                       <input type="radio" id="mme" name="civilite" value="Mme" required className="cursor-pointer" />
-                      <label htmlFor="mme" className="text-base font-medium text-purple-100 group-hover:text-white cursor-pointer transition-colors">Mme</label>
+                      <label htmlFor="mme" className="text-sm font-medium text-purple-100 group-hover:text-white cursor-pointer transition-colors">Mme</label>
                     </div>
 
                     <div className="flex items-center gap-2.5 cursor-pointer group">
                       <input type="radio" id="other" name="civilite" value="Mx" required className="cursor-pointer" />
-                      <label htmlFor="other" className="text-base font-medium text-purple-100 group-hover:text-white cursor-pointer transition-colors">Mx</label>
+                      <label htmlFor="other" className="text-sm font-medium text-purple-100 group-hover:text-white cursor-pointer transition-colors">Mx</label>
                     </div>
 
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-4 w-full"> {/* FirstName and Lastname */}
-                    <input type="text" name="nom" placeholder="Nom" className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-6 py-4 focus:outline-none transition-all placeholder-purple-200/40 text-base flex-1 w-full" required />
-                    <input type="text" name="prenom" placeholder="Prénom" className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-6 py-4 focus:outline-none transition-all placeholder-purple-200/40 text-base flex-1 w-full" required />
+                    <input type="text" name="nom" placeholder="Nom" className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-5 py-3.5 focus:outline-none transition-all placeholder-purple-200/40 text-sm flex-1 w-full" required />
+                    <input type="text" name="prenom" placeholder="Prénom" className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-5 py-3.5 focus:outline-none transition-all placeholder-purple-200/40 text-sm flex-1 w-full" required />
                   </div>
 
                   {/* Email and Phone */}
-                  <input type="email" name="email" placeholder="Adresse mail" className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-6 py-4 focus:outline-none transition-all placeholder-purple-200/40 text-base w-full" required />
-                  <input type="tel" name="telephone" placeholder="Téléphone" className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-6 py-4 focus:outline-none transition-all placeholder-purple-200/40 text-base w-full" />
+                  <input type="email" name="email" placeholder="Adresse mail" className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-5 py-3.5 focus:outline-none transition-all placeholder-purple-200/40 text-sm w-full" required />
+                  <input type="tel" name="telephone" placeholder="Téléphone" className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-5 py-3.5 focus:outline-none transition-all placeholder-purple-200/40 text-sm w-full" />
 
                 </div>
 
@@ -118,17 +118,17 @@ export default function Home() {
               <fieldset className="w-full">
                 {/* Availabilities */}
 
-                <legend className="pb-6 text-2xl font-black text-[#fbad18] uppercase tracking-wider">Disponibilités pour une visite</legend>
+                <legend className="pb-6 text-xl font-black text-[#fbad18] uppercase tracking-wider">Disponibilités pour une visite</legend>
 
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 min-h-[50px] w-full"> {/* Button with avaibilities */}
-                  <button type="button" onClick={() => setIsModalOpen(true)} className="bg-[#fbad18] text-white rounded-full px-8 py-4 w-full sm:w-auto cursor-pointer hover:bg-[#e2990d] hover:-translate-y-1 hover:shadow-lg active:scale-[0.98] active:translate-y-0 transition-all text-base font-bold uppercase tracking-wider shrink-0 shadow-md">
+                  <button type="button" onClick={() => setIsModalOpen(true)} className="bg-[#fbad18] text-white rounded-full px-8 py-3.5 w-full sm:w-auto cursor-pointer hover:bg-[#e2990d] hover:-translate-y-1 hover:shadow-lg active:scale-[0.98] active:translate-y-0 transition-all text-sm font-bold uppercase tracking-wider shrink-0 shadow-md">
                     Ajouter une disponibilité
                   </button>
 
                   {availabilities.length > 0 && (
                     <div className="max-h-[48px] overflow-y-auto custom-scrollbar flex flex-col gap-2 pr-2 w-full sm:min-w-[250px] mt-1">
                       {availabilities.map((slot, index) => (
-                        <div key={index} className="p-3 bg-purple-900/40 rounded-xl flex items-center justify-between text-purple-100 text-xs font-medium gap-4 border border-purple-800/60 shadow-inner">
+                        <div key={index} className="p-3 bg-purple-900/40 rounded-xl flex items-center justify-between text-purple-100 text-xs font-medium gap-4 border border-purple-800/60 shadow-inner animate-fade-in">
                           <span>{getReadableAvailability(slot)}</span>
                           <button
                             type="button"
@@ -153,7 +153,7 @@ export default function Home() {
               <fieldset className="w-full">
                 {/* Message */}
 
-                <legend className="pb-6 text-2xl font-black text-[#fbad18] uppercase tracking-wider">Votre message</legend>
+                <legend className="pb-6 text-xl font-black text-[#fbad18] uppercase tracking-wider">Votre message</legend>
 
                 <div className="flex flex-col gap-5">
 
@@ -161,28 +161,28 @@ export default function Home() {
 
                     <div className="flex items-center gap-2.5 cursor-pointer group">
                       <input type="radio" id="visit" name="reason" value="visite" required className="cursor-pointer" />
-                      <label htmlFor="visit" className="text-base font-medium text-purple-100 group-hover:text-white cursor-pointer transition-colors">Demande de visite</label>
+                      <label htmlFor="visit" className="text-sm font-medium text-purple-100 group-hover:text-white cursor-pointer transition-colors">Demande de visite</label>
                     </div>
 
                     <div className="flex items-center gap-2.5 cursor-pointer group">
                       <input type="radio" id="photos" name="reason" value="photos" required className="cursor-pointer" />
-                      <label htmlFor="photos" className="text-base font-medium text-purple-100 group-hover:text-white cursor-pointer transition-colors">Demande de plus de photos</label>
+                      <label htmlFor="photos" className="text-sm font-medium text-purple-100 group-hover:text-white cursor-pointer transition-colors">Demande de plus de photos</label>
                     </div>
 
                     <div className="flex items-center gap-2.5 cursor-pointer group">
                       <input type="radio" id="other_reason" name="reason" value="autre" required className="cursor-pointer" />
-                      <label htmlFor="other_reason" className="text-base font-medium text-purple-100 group-hover:text-white cursor-pointer transition-colors">Autre</label>
+                      <label htmlFor="other_reason" className="text-sm font-medium text-purple-100 group-hover:text-white cursor-pointer transition-colors">Autre</label>
                     </div>
 
                   </div>
 
                   <div className="flex items-center gap-2.5 cursor-pointer group py-1 pl-1"> {/* checkbox recall  */}
                     <input type="checkbox" id="contact_tel" name="contact" value="true" className="cursor-pointer" />
-                    <label htmlFor="contact_tel" className="text-base font-medium text-purple-100 group-hover:text-white cursor-pointer transition-colors">Être recontacté par téléphone</label>
+                    <label htmlFor="contact_tel" className="text-sm font-medium text-purple-100 group-hover:text-white cursor-pointer transition-colors">Être recontacté par téléphone</label>
                   </div>
 
                   {/* text area  */}
-                  <textarea name="message" placeholder="Message" maxLength={500} className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-6 py-4 h-40 custom-scrollbar resize-none w-full focus:outline-none transition-all placeholder-purple-200/40 text-base" required />
+                  <textarea name="message" placeholder="Message" maxLength={500} className="bg-purple-900/30 focus:bg-purple-950/50 border border-purple-800/60 focus:border-[#fbad18] text-white rounded-2xl px-5 py-3.5 h-32 custom-scrollbar resize-none w-full focus:outline-none transition-all placeholder-purple-200/40 text-sm" required />
 
                 </div>
 
@@ -192,7 +192,7 @@ export default function Home() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-[#fbad18] hover:bg-[#e2990d] hover:-translate-y-1 hover:shadow-lg active:scale-[0.98] active:translate-y-0 disabled:bg-[#fbad18]/40 disabled:cursor-default disabled:transform-none text-white text-lg font-bold rounded-full px-12 py-4 cursor-pointer transition-all w-full sm:w-auto sm:ml-auto lg:mt-auto mt-6 uppercase tracking-wider shadow-md"
+                className="bg-[#fbad18] hover:bg-[#e2990d] hover:-translate-y-1 hover:shadow-lg active:scale-[0.98] active:translate-y-0 disabled:bg-[#fbad18]/40 disabled:cursor-default disabled:transform-none text-white text-base font-bold rounded-full px-12 py-4 cursor-pointer transition-all w-full sm:w-auto sm:ml-auto lg:mt-auto mt-6 uppercase tracking-wider shadow-md"
               >
                 {isSubmitting ? "Envoi en cours..." : "Envoyer"}
               </button>
