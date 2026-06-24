@@ -1,4 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
+
+/* Configuration de la police locale Gotham */
+@font-face {
+  font-family: 'Gotham';
+  src: url('/font/Gotham/Gotham Book/Gotham Book.otf') format('opentype'),
+       url('/font/Gotham/Gotham Regular/Gotham Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('/font/Gotham/Gotham Bold/Gotham Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   --background: #f0eff1;
@@ -8,7 +27,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Gotham", sans-serif;
+  --font-sans: "Gotham", "Montserrat", sans-serif;
   --font-mono: monospace;
 }
 
@@ -22,7 +41,8 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Gotham", sans-serif;
+  font-family: "Gotham", "Montserrat", sans-serif;
+  font-size: 18px;
 }
 
 /* Custom scrollbar utility */
@@ -35,14 +55,14 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #dfdfdf;
+  background: #fbad18;
   border-radius: 200px;
-  border: 3px solid transparent;
+  border: 3.5px solid transparent;
   background-clip: padding-box;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #b1b1b1;
+  background: #e2990d;
 }
 
 /* Toast animations */
@@ -76,4 +96,116 @@ body {
 
 .animate-slide-down {
   animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom inputs styling */
+input[type="radio"] {
+  appearance: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: 0;
+  font: inherit;
+  color: #fbad18;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+input[type="radio"]::before {
+  content: "";
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 150ms transform cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 1em 1em currentColor;
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+input[type="radio"]:checked {
+  border-color: #fbad18;
+  background-color: rgba(251, 173, 24, 0.1);
+}
+
+input[type="radio"]:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+input[type="radio"]:checked:hover {
+  border-color: #e2990d;
+}
+
+input[type="radio"]:focus-visible {
+  outline: 2px solid rgba(251, 173, 24, 0.5);
+  outline-offset: 2px;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: 0;
+  font: inherit;
+  color: #fbad18;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 0.375rem;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65rem;
+  height: 0.65rem;
+  transform: scale(0);
+  transition: 150ms transform cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: currentColor;
+  clip-path: polygon(14% 44%, 0 58%, 38% 96%, 100% 16%, 86% 2%, 38% 68%);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+input[type="checkbox"]:checked {
+  border-color: #fbad18;
+  background-color: rgba(251, 173, 24, 0.1);
+}
+
+input[type="checkbox"]:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+input[type="checkbox"]:checked:hover {
+  border-color: #e2990d;
+}
+
+input[type="checkbox"]:focus-visible {
+  outline: 2px solid rgba(251, 173, 24, 0.5);
+  outline-offset: 2px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
 }
